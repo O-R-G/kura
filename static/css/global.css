@@ -14,8 +14,8 @@ body, #page {
 	width: 100%;
 	height: 100%;
 
-	font-family: sf-text, Helvetica, Arial, sans-serif;
-	font-size: 18px;
+	font-family: ocrbmedium, Helvetica, Arial, sans-serif;
+	font-size: 16px;
 	line-height: 22px;
 
 	/*white-space:nowrap;*/
@@ -34,33 +34,6 @@ img {
 .fullscreen {
 	/* width: auto; */
 	height: auto;
-}
-
-.img-container {
-	padding-bottom: 15px;
-}
-
-a:link,
-a:visited {
-    color: #0000ff;
-    text-decoration: none;
-}
-
-a:hover {
-    color: #000;
-}
-
-a:active {
-	color:#FFF;
-}
-
-header {
-	position: relative;
-	padding: 20px;
-}
-
-header.homepage {
-	z-index: 10;
 }
 
 ul {
@@ -104,6 +77,35 @@ ul:first-child {
 	width: auto;
 	height: auto;
 	margin: auto;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:hover {
+  opacity: 0.5;
+}
+#logo {
+  width: 180px;
+  height: 180px;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 15px;
+}
+
+.content {
+
+}
+
+#temp {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 15px;
 }
 
 /* utility classes */
