@@ -84,9 +84,14 @@ a {
   color: black;
 }
 
-a:hover {
+.content a:hover {
   opacity: 0.5;
 }
+
+.content a:hover > div {
+  opacity: 0.5;
+}
+
 #logo {
   width: 180px;
   height: 180px;
@@ -98,14 +103,52 @@ a:hover {
 }
 
 .content {
-
-}
-
-#temp {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   padding: 15px;
+
+  width: 500px;
+  max-width: 100%;
+
+    z-index: 101;
+}
+
+.content .page-title {
+  text-transform: uppercase;
+}
+
+.content-program {
+  margin-bottom: 1em;
+}
+
+.fill {
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.media.fill {
+  display: flex;
+  flex-direction: column;
+}
+
+.media-item {
+  display: flex;
+  flex-direction: row;
+  z-index: 100;
+
+  margin-left: 10vw;
+  margin-top: 10vh;
+}
+
+.media-item .media-image {
+  width: calc(100% - 250px);
+  max-width: 100%;
+}
+
+.media-item .media-caption {
+  padding-left: 15px;
+  width: 250px;
 }
 
 /* utility classes */
@@ -127,63 +170,27 @@ a:hover {
 	visibility: visible;
 }
 
-.column-container-container:last-child > .column-container {
-	padding-bottom: 30vw;
-}
-
-/* vertical iPad / horizontal iPhone */
-@media screen and (max-width: 768px) {
-	.column-container-container {
-		display: block;
-	}
-	.column-container-container:last-child {
-		padding-bottom: 44vw;
-	}
-	.column-container {
-		width: 50vw;
-	}
-	.column-container-container:last-child > .column-container {
-		padding-bottom: 0px;
-	}
-}
-
-/* vertical iPhone */
 @media screen and (max-width: 500px) {
-	.column-container {
-		display: block;
-		padding-bottom: 0px;
-		width: 100%;
-	}
-
-	.hidden.column-container {
-		display: none;
-	}
-
-	.column-container > p:last-child {
-		margin-bottom: 0px;
-	}
-
-	.column-container:last-child {
-		padding-bottom: 20px;
-	}
-
-	.column-container-container:last-child {
-		padding-bottom: 44vw;
-	}
-}
-
-/* animation */
-.blink {
-  animation: blink 2s steps(2, start) infinite;
-  -webkit-animation: blink 2s steps(2, start) infinite;
-}
-@keyframes blink {
-  to {
-    visibility: hidden;
+  .content {
+    position: initial;
   }
-}
-@-webkit-keyframes blink {
-  to {
-    visibility: hidden;
+
+  .media.fill {
+    margin-top: 100px;
+    padding: 15px;
+  }
+
+  .media-item {
+    flex-direction: column;
+  }
+
+  .media-item .media-image {
+    width: 100%;
+    max-width: 100%;
+  }
+  .media-item .media-caption {
+    padding-left: 0;
+    padding-top: 1em;
+    width: 100%;
   }
 }

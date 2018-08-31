@@ -1,12 +1,3 @@
-<?
-$children = $oo->children(0);
-$item = $children[0];
-?>
-<div class="content" id="temp">
+<div class="content" id="home">
   <?= $item['body']; ?>
-</div>
-
-
-<div id="logo">
-  <img src="/static/media/ck/ck.gif">
 </div>
