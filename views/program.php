@@ -15,11 +15,23 @@
 </div>
 
 <script>
-  var medias = document.getElementsByClassName('media-item');
+checkSize();
+window.onresize = checkSize;
 
+function checkSize() {
+
+
+  var medias = document.getElementsByClassName('media-item');
   for (var i = 0; i < medias.length; i++) {
-    medias[i].style.marginLeft = Math.random()*20+5 + 'vw';
-    medias[i].style.marginTop = Math.random()*20+5 + 'vh';
-    medias[i].style.width = Math.random()*1000+500 + 'px';
+    if (window.innerWidth<= 500) {
+      medias[i].style.marginLeft = '';
+      medias[i].style.marginTop = '';
+      medias[i].style.width = '';
+    } else {
+      medias[i].style.marginLeft = Math.random()*20+5 + 'vw';
+      medias[i].style.marginTop = Math.random()*20+5 + 'vh';
+      medias[i].style.width = Math.random()*1000+500 + 'px';
+    }
   }
+}
 </script>
