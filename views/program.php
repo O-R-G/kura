@@ -1,6 +1,33 @@
+<?
+  // most recent chronological sort
+  function date_sort($a, $b) {
+    return strtotime($b['begin']) - strtotime($a['begin']);
+  }
+
+  $children = $oo->children($root);
+  foreach($children as $child) {
+    $name =  strtolower($child["name1"]);
+    if ($name == "program") {
+      $programObj = $child;
+      break;
+    }
+  }
+
+  $programming = $oo->children($programObj['id']);
+  usort($programming, "date_sort");
+
+  foreach ($programming as $key=>$program) {
+    if ($program['id'] == $item['id']) {
+      $itemKey = $key;
+      break;
+    }
+  }
+?>
+
 <div class="container" id="containerBox">
   <div class="content">
     <a href="javascript:history.back()">
+      <div><?= $key ?></div>
       <div class="page-title"><?= $item['name1']; ?></div>
       <div><?= $item['deck']; ?></div>
       <? if (date('y', strtotime($item['begin'])) != date('y', strtotime($item['end']))) :?>
@@ -11,20 +38,20 @@
     </a>
     <div><br></div>
     <?= $item['body']; ?>
-  </div>
 
-  <div class="media">
-    <? foreach($media as $key=>$m): ?>
-      <div class="media-item">
-        <? if ($m['caption'] == "__blur__"): ?>
-          <div class="media-image click blur" data-index="<?= $key; ?>"><img src="<?= m_url($m); ?>"></div>
-          <div class="media-caption"></div>
-        <? else: ?>
-          <div class="media-image click" data-index="<?= $key; ?>"><img src="<?= m_url($m); ?>"></div>
-          <div class="media-caption"><?= $m['caption']; ?></div>
-        <? endif; ?>
-      </div>
-    <? endforeach; ?>
+    <div class="media">
+      <? foreach($media as $key=>$m): ?>
+        <div class="media-item">
+          <? if ($m['caption'] == "__blur__"): ?>
+            <div class="media-image click blur" data-index="<?= $key; ?>"><img src="<?= m_url($m); ?>"></div>
+            <div class="media-caption"></div>
+          <? else: ?>
+            <div class="media-image click" data-index="<?= $key; ?>"><img src="<?= m_url($m); ?>"></div>
+            <div class="media-caption"><?= $m['caption']; ?></div>
+          <? endif; ?>
+        </div>
+      <? endforeach; ?>
+    </div>
   </div>
 </div>
 
@@ -47,23 +74,23 @@
 
 
 <script>
-checkSize();
-window.onresize = checkSize;
-
-function checkSize() {
-  var medias = document.getElementsByClassName('media-item');
-  for (var i = 0; i < medias.length; i++) {
-    if (window.innerWidth<= 1000) {
-      medias[i].style.marginLeft = '';
-      medias[i].style.marginTop = '';
-      medias[i].style.marginRight = '';
-    } else {
-      medias[i].style.paddingLeft = Math.random()*20+5 + '%';
-      medias[i].style.paddingTop = Math.random()*20+5 + '%';
-      medias[i].style.paddingRight = Math.random()*20+5 + '%';
-    }
-  }
-}
+// checkSize();
+// window.onresize = checkSize;
+//
+// function checkSize() {
+//   var medias = document.getElementsByClassName('media-item');
+//   for (var i = 0; i < medias.length; i++) {
+//     if (window.innerWidth<= 1000) {
+//       medias[i].style.marginLeft = '';
+//       medias[i].style.marginTop = '';
+//       medias[i].style.marginRight = '';
+//     } else {
+//       medias[i].style.paddingLeft = Math.random()*20+5 + '%';
+//       medias[i].style.paddingTop = Math.random()*20+5 + '%';
+//       medias[i].style.paddingRight = Math.random()*20+5 + '%';
+//     }
+//   }
+// }
 
 if (window.innerWidth > 1000) {
   var galleryItems = document.getElementsByClassName('gallery-item');
@@ -72,6 +99,33 @@ if (window.innerWidth > 1000) {
   document.getElementById('cross').onclick = hideGallery;
   document.getElementById('right-arrow').onclick = function() { showGallery((galleryIndex+1)%galleryItems.length);}
   document.getElementById('left-arrow').onclick = function() { showGallery((galleryIndex-1)%galleryItems.length);}
+
+  document.onkeydown = checkKey;
+
+  function checkKey(e) {
+
+      e = e || window.event;
+
+      if (e.keyCode == '38') {
+          // up arrow
+      }
+      else if (e.keyCode == '40') {
+          // down arrow
+      }
+      else if (e.keyCode == '37') {
+         // left arrow
+         showGallery((galleryIndex-1)%galleryItems.length);
+      }
+      else if (e.keyCode == '39') {
+         // right arrow
+         showGallery((galleryIndex+1)%galleryItems.length);
+      }
+      else if (e.keyCode == '27') {
+        // esc key
+        hideGallery();
+      }
+
+  }
 
   Array.prototype.forEach.call(document.getElementsByClassName('media-image'), function(e) {
     e.onclick = function() {

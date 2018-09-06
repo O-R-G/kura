@@ -18,7 +18,7 @@
       <? foreach ($programming as $key=>$program): ?>
         <div class="content-program">
           <a href="/program/<?= $program['url'] ?>">
-            <div><?= sizeof($programming)-$key ?></div>
+            <div><?= $key ?></div>
             <div class="content-program-title"><?= $program['name1']; ?></div>
             <div class="content-program-summary"><?= $program['deck']; ?></div>
             <div class="content-program-dates"><?= date('j.m', strtotime($program['begin'])) ?> &ndash; <?= date('j.m.y', strtotime($program['end'])) ?></div>

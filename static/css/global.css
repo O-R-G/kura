@@ -103,9 +103,7 @@ a {
 }
 
 .container {
-  display: flex;
-  flex-direction: row;
-  padding-bottom: 300px;
+  padding-bottom: 200px;
 }
 
 .content {
@@ -113,17 +111,6 @@ a {
   max-width: 100%;
   padding: 15px;
 }
-/* .content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  padding: 15px;
-
-  width: 500px;
-  max-width: 100%;
-
-    z-index: 101;
-} */
 
 .content .page-title {
   text-transform: uppercase;
@@ -138,31 +125,19 @@ a {
 }
 
 .media {
-  width: calc(100vw - 500px);
-  display: flex;
-  flex-direction: column;
-  /* padding-bottom:300px; */
+  margin-top: 4em;
 }
 
 .media-item {
-  display: flex;
-  flex-direction: row;
-
-  padding-left: 10%;
-  padding-top: 10%;
-  padding-right: 10%;
   width: 100%;
+  margin-bottom: 2em;
 }
 
 .media-item .media-image {
-  min-width: 0%;
-  width: calc(100% - 250px);
-  max-width: 100%;
 }
 
 .media-item .media-caption {
-  padding-left: 15px;
-  max-width: 250px;
+  margin-top: .5em;
   font-size: 11px;
   line-height: 14px;
 }
@@ -179,35 +154,31 @@ a {
 
   width: 100vw;
   height: 100vh;
-  /* display: none; */
 
   background-color: #fff;
 
   display: none;
-  flex-direction: row;
-  justify-content: space-around;
 }
 
 .gallery-item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 5%;
   width: 100%;
+  height: 100%;
 }
 
 .gallery-image {
   width: 100%;
   height: 100%;
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-around; */
 }
 
 .gallery-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+.gallery-arrow {
+  z-index: 502;
+  cursor: pointer;
 }
 
 .gallery-arrow img {
@@ -223,13 +194,13 @@ a {
 
 #left-arrow {
   position: fixed;
-  top: calc(50% - 10px);
+  bottom: 15px;
   left: 15px;
 }
 
 #right-arrow {
   position: fixed;
-  top: calc(50% - 10px);
+  bottom: 15px;
   right: 15px;
 }
 
@@ -275,7 +246,6 @@ a {
 
 @media screen and (max-width: 1000px) {
   .container {
-    flex-direction: column;
   }
 
   .content {
@@ -283,28 +253,15 @@ a {
   }
 
   .media {
-    width: 100%;
-    margin-top: 4em;
-    padding: 15px;
-    /* padding-bottom:300px; */
   }
 
   .media-item {
-    flex-direction: column;
-    padding: 0;
-    margin-bottom: 2em;
   }
 
   .media-item .media-image {
-    width: 100%;
-    max-width: 100%;
   }
 
   .media-item .media-caption {
-    padding-left: 0;
-    padding-top: 1em;
-    width: 100%;
-    max-width: 100%;
   }
 
   #logo {
