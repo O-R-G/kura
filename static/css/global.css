@@ -100,7 +100,6 @@ a {
   bottom: 0;
   right: 0;
   padding: 15px;
-  z-index: -1;
 }
 
 .container {
@@ -153,7 +152,6 @@ a {
   padding-top: 10%;
   padding-right: 10%;
   width: 100%;
-  z-index: 101;
 }
 
 .media-item .media-image {
@@ -237,7 +235,7 @@ a {
 
 /* utility classes */
 .noscroll{
-    overflow: hidden;
+  overflow:hidden;
 }
 .click {
   cursor: pointer;
@@ -308,4 +306,16 @@ a {
     width: 100%;
     max-width: 100%;
   }
+
+  #logo {
+    width: 90px;
+    height: 90px;
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: 15px;
+  }
+
+
 }

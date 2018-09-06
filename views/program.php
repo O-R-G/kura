@@ -65,30 +65,32 @@ function checkSize() {
   }
 }
 
-var galleryItems = document.getElementsByClassName('gallery-item');
-var galleryIndex = 0;
+if (window.innerWidth > 1000) {
+  var galleryItems = document.getElementsByClassName('gallery-item');
+  var galleryIndex = 0;
 
-document.getElementById('cross').onclick = hideGallery;
-document.getElementById('right-arrow').onclick = function() { showGallery((galleryIndex+1)%galleryItems.length);}
-document.getElementById('left-arrow').onclick = function() { showGallery((galleryIndex-1)%galleryItems.length);}
+  document.getElementById('cross').onclick = hideGallery;
+  document.getElementById('right-arrow').onclick = function() { showGallery((galleryIndex+1)%galleryItems.length);}
+  document.getElementById('left-arrow').onclick = function() { showGallery((galleryIndex-1)%galleryItems.length);}
 
-Array.prototype.forEach.call(document.getElementsByClassName('media-image'), function(e) {
-  e.onclick = function() {
-    var index = e.dataset.index;
-    showGallery(index);
+  Array.prototype.forEach.call(document.getElementsByClassName('media-image'), function(e) {
+    e.onclick = function() {
+      var index = e.dataset.index;
+      showGallery(index);
+    }
+  });
+
+  function showGallery(index) {
+    document.body.classList.add('noscroll');
+    document.getElementById('galleryBox').style.display = 'flex';
+    Array.prototype.forEach.call(galleryItems, function(e) { e.classList.add('hidden'); });
+    galleryItems[parseInt(index)].classList.remove('hidden');
+    galleryIndex = parseInt(index);
   }
-});
 
-function showGallery(index) {
-  document.body.classList.add('noscroll');
-  document.getElementById('galleryBox').style.display = 'flex';
-  Array.prototype.forEach.call(galleryItems, function(e) { e.classList.add('hidden'); });
-  galleryItems[parseInt(index)].classList.remove('hidden');
-  galleryIndex = parseInt(index);
-}
-
-function hideGallery() {
-  document.getElementById('galleryBox').style.display = 'none';
-  document.body.classList.remove('noscroll');
+  function hideGallery() {
+    document.getElementById('galleryBox').style.display = 'none';
+    document.body.classList.remove('noscroll');
+  }
 }
 </script>
