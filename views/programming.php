@@ -1,7 +1,7 @@
 <?
-  // most recent chronological sort
+  // chronological sort
   function date_sort($a, $b) {
-    return strtotime($b['begin']) - strtotime($a['begin']);
+    return strtotime($a['begin']) - strtotime($b['begin']);
   }
 
   $programming = $oo->children($item['id']);
