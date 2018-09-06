@@ -1,6 +1,6 @@
 <div class="container">
   <div class="content">
-    <div class="page-title"><a href="javascript:history.back()"><?= $item['name1']; ?></a></div>
+    <a href="javascript:history.back()"><div class="page-title full"><?= $item['name1']; ?></div></a>
     <div><br></div>
     <?= $item['body']; ?>
   </div>

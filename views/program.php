@@ -1,7 +1,7 @@
 <?
-  // most recent chronological sort
+  // chronological sort
   function date_sort($a, $b) {
-    return strtotime($b['begin']) - strtotime($a['begin']);
+    return strtotime($a['begin']) - strtotime($b['begin']);
   }
 
   $children = $oo->children($root);
@@ -26,16 +26,14 @@
 
 <div class="container" id="containerBox">
   <div class="content">
-    <a href="javascript:history.back()">
-      <div><?= $key ?></div>
-      <div class="page-title"><?= $item['name1']; ?></div>
-      <div><?= $item['deck']; ?></div>
-      <? if (date('y', strtotime($item['begin'])) != date('y', strtotime($item['end']))) :?>
-        <div><?= date('j.m.y', strtotime($item['begin'])) ?> &ndash; <?= date('j.m.y', strtotime($item['end'])) ?></div>
-      <? else: ?>
-        <div><?= date('j.m', strtotime($item['begin'])) ?> &ndash; <?= date('j.m.y', strtotime($item['end'])) ?></div>
-      <? endif; ?>
-    </a>
+    <a href="javascript:history.back()"><div class="blink sticky full"><?= $key ?></div></a>
+    <div class="page-title"><?= $item['name1']; ?></div>
+    <div><?= $item['deck']; ?></div>
+    <? if (date('y', strtotime($item['begin'])) != date('y', strtotime($item['end']))) :?>
+      <div><?= date('j.m.y', strtotime($item['begin'])) ?> &ndash; <?= date('j.m.y', strtotime($item['end'])) ?></div>
+    <? else: ?>
+      <div><?= date('j.m', strtotime($item['begin'])) ?> &ndash; <?= date('j.m.y', strtotime($item['end'])) ?></div>
+    <? endif; ?>
     <div><br></div>
     <?= $item['body']; ?>
 
@@ -60,7 +58,7 @@
   <div id="right-arrow" class="gallery-arrow click"><img src="/static/media/svg/right-arrow.svg"></div>
   <div id="cross" class="gallery-arrow click"><img src="/static/media/svg/x.svg"></div>
   <? foreach($media as $key=>$m): ?>
-    <div class="gallery-item hidden" data-index="<?= $key; ?>">
+    <div class="gallery-item hidden click" data-index="<?= $key; ?>">
       <? if ($m['caption'] == "__blur__"): ?>
         <div class="gallery-image blur" data-index="<?= $key; ?>"><img src="<?= m_url($m); ?>"></div>
         <div class="gallery-caption hidden"></div>
@@ -74,31 +72,14 @@
 
 
 <script>
-// checkSize();
-// window.onresize = checkSize;
-//
-// function checkSize() {
-//   var medias = document.getElementsByClassName('media-item');
-//   for (var i = 0; i < medias.length; i++) {
-//     if (window.innerWidth<= 1000) {
-//       medias[i].style.marginLeft = '';
-//       medias[i].style.marginTop = '';
-//       medias[i].style.marginRight = '';
-//     } else {
-//       medias[i].style.paddingLeft = Math.random()*20+5 + '%';
-//       medias[i].style.paddingTop = Math.random()*20+5 + '%';
-//       medias[i].style.paddingRight = Math.random()*20+5 + '%';
-//     }
-//   }
-// }
-
-if (window.innerWidth > 1000) {
+// if (window.innerWidth > 1000) {
+if (true) {
   var galleryItems = document.getElementsByClassName('gallery-item');
   var galleryIndex = 0;
 
   document.getElementById('cross').onclick = hideGallery;
-  document.getElementById('right-arrow').onclick = function() { showGallery((galleryIndex+1)%galleryItems.length);}
-  document.getElementById('left-arrow').onclick = function() { showGallery((galleryIndex-1)%galleryItems.length);}
+  document.getElementById('right-arrow').onclick = nextImage;
+  document.getElementById('left-arrow').onclick = previousImage;
 
   document.onkeydown = checkKey;
 
@@ -114,11 +95,11 @@ if (window.innerWidth > 1000) {
       }
       else if (e.keyCode == '37') {
          // left arrow
-         showGallery((galleryIndex-1)%galleryItems.length);
+         previousImage();
       }
       else if (e.keyCode == '39') {
          // right arrow
-         showGallery((galleryIndex+1)%galleryItems.length);
+         nextImage();
       }
       else if (e.keyCode == '27') {
         // esc key
@@ -133,6 +114,20 @@ if (window.innerWidth > 1000) {
       showGallery(index);
     }
   });
+
+  Array.prototype.forEach.call(document.getElementsByClassName('gallery-item'), function(e) {
+    e.onclick = function() {
+      nextImage();
+    }
+  });
+
+  function nextImage() {
+    showGallery((galleryIndex+1)%galleryItems.length);
+  }
+
+  function previousImage() {
+    showGallery((galleryIndex-1)%galleryItems.length);
+  }
 
   function showGallery(index) {
     document.body.classList.add('noscroll');

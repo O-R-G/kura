@@ -130,21 +130,19 @@ a {
 
 .media-item {
   width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 15px;
 }
 
 .media-item .media-image {
 }
 
 .media-item .media-caption {
-  margin-top: .5em;
+  /* margin-top: .5em; */
+  margin-bottom: 1em;
   font-size: 11px;
   line-height: 14px;
 }
 
-#program-label {
-  animation: blink 1s linear infinite;
-}
 
 .gallery {
   position: fixed;
@@ -211,6 +209,17 @@ a {
 .click {
   cursor: pointer;
 }
+.blink {
+  animation: blink 1s linear infinite;
+}
+.sticky {
+  position: sticky;
+  top: 15px;
+}
+.full {
+  width: 100%;
+}
+
 @keyframes blink {
   50% {
     opacity: 0.0;
