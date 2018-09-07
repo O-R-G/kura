@@ -122,11 +122,17 @@ if (true) {
   });
 
   function nextImage() {
-    showGallery((galleryIndex+1)%galleryItems.length);
+    if (galleryIndex+1 > galleryItems.length-1)
+      showGallery(0);
+    else
+      showGallery(galleryIndex+1);
   }
 
   function previousImage() {
-    showGallery((galleryIndex-1)%galleryItems.length);
+    if (galleryIndex-1 < 0)
+      showGallery(galleryItems.length-1);
+    else
+      showGallery(galleryIndex-1);
   }
 
   function showGallery(index) {
