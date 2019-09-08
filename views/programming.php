@@ -1,7 +1,7 @@
 <?
   // chronological sort
   function date_sort($a, $b) {
-    return strtotime($a['begin']) - strtotime($b['begin']);
+    return strtotime($b['begin']) - strtotime($a['begin']);
   }
 
   $programming = $oo->children($item['id']);
@@ -18,7 +18,7 @@
       <? foreach ($programming as $key=>$program): ?>
         <div class="content-program">
           <a href="/program/<?= $program['url'] ?>">
-            <div class="blink"><?= $key ?></div>
+            <div class="blink"><?= count($programming) - $key - 1 ?></div>
             <div class="content-program-title"><?= $program['name1']; ?></div>
             <div class="content-program-summary"><?= $program['deck']; ?></div>
             <div class="content-program-dates"><?= date('j.m', strtotime($program['begin'])) ?> &ndash; <?= date('j.m.y', strtotime($program['end'])) ?></div>
